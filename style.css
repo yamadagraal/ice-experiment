@@ -24,15 +24,15 @@ body{
     min-height:100vh;
 }
 
-.app{
+.app {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-    width:100%;
-    max-width:430px;
-
-    min-height:100vh;
-
-    padding:20px;
-
+body.experiment-mode .app {
+    min-height: 0;
 }
 
 
@@ -648,5 +648,218 @@ body.experiment-mode #guide {
 
     body.experiment-mode #guide {
         font-size: 14px;
+    }
+}
+
+/* ===================================
+   実験画面を完全に1画面へ固定
+=================================== */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+html.experiment-mode,
+body.experiment-mode {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+body.experiment-mode {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    margin: 0;
+}
+
+body.experiment-mode .app {
+    width: 100%;
+    max-width: 430px;
+
+    height: 100dvh;
+    min-height: 0;
+
+    margin: 0 auto;
+    padding: 8px 12px;
+
+    overflow: hidden;
+}
+
+body.experiment-mode #experimentScreen.active {
+    display: grid;
+
+    grid-template-rows:
+        38px
+        54px
+        minmax(0, 1fr)
+        48px
+        28px;
+
+    gap: 6px;
+
+    width: 100%;
+    height: calc(100dvh - 16px);
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    touch-action: none;
+}
+
+
+/* セッション名・何枚目かを常に上に表示 */
+
+body.experiment-mode .top {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 38px;
+
+    margin: 0;
+}
+
+body.experiment-mode #sessionName {
+    font-size: 17px;
+    line-height: 1;
+}
+
+body.experiment-mode #progress {
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 1;
+}
+
+
+/* タイマー */
+
+body.experiment-mode #timerCircle {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto;
+
+    font-size: 21px;
+    line-height: 1;
+}
+
+
+/* 画像領域 */
+
+body.experiment-mode .imageCard {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    margin: 0;
+    padding: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+body.experiment-mode #iceImage {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+    aspect-ratio: auto;
+}
+
+
+/* 評価ボタン */
+
+body.experiment-mode .buttons {
+    display: flex;
+    gap: 8px;
+
+    width: 100%;
+    height: 48px;
+
+    margin: 0;
+}
+
+body.experiment-mode .buttons button {
+    height: 48px;
+    min-height: 0;
+
+    padding: 0 6px;
+
+    font-size: 15px;
+}
+
+
+/* 案内文 */
+
+body.experiment-mode #guide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 28px;
+    min-height: 0;
+
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+
+/* 画面がかなり小さいスマホ向け */
+
+@media (max-height: 650px) {
+
+    body.experiment-mode .app {
+        padding: 5px 10px;
+    }
+
+    body.experiment-mode #experimentScreen.active {
+        grid-template-rows:
+            32px
+            44px
+            minmax(0, 1fr)
+            42px
+            24px;
+
+        gap: 4px;
+
+        height: calc(100dvh - 10px);
+    }
+
+    body.experiment-mode .top {
+        height: 32px;
+    }
+
+    body.experiment-mode #timerCircle {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    body.experiment-mode .buttons,
+    body.experiment-mode .buttons button {
+        height: 42px;
+    }
+
+    body.experiment-mode #guide {
+        height: 24px;
+        font-size: 12px;
     }
 }
