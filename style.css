@@ -290,20 +290,16 @@ button:hover{
    画像カード
 =================================== */
 
-.imageCard{
+.imageCard {
+    background: white;
+    border-radius: 24px;
+    padding: 15px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    margin-top: 25px;
 
-    background:white;
-
-    border-radius:24px;
-
-    padding:15px;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.08);
-
-    margin-top:25px;
-
-    transition:.35s;
-
+    transition:
+        opacity 0.15s ease,
+        transform 0.35s ease;
 }
 
 #iceImage{
@@ -511,4 +507,14 @@ button:hover{
 
     }
 
+}
+
+.imageCard.loading {
+    opacity: 0;
+}
+
+.imageCard {
+    transition:
+        opacity 0.15s ease,
+        transform 0.35s ease;
 }

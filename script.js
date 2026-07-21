@@ -199,8 +199,10 @@ function showCurrentImage() {
 
     remainingTime = EXPERIMENT.LIMIT_TIME;
 
-    resetCardAnimation();
-    resetAnswerButtons();
+imageCard.classList.add("loading");
+
+resetCardAnimation();
+resetAnswerButtons();
 
     const images = IMAGE_SETS[currentMode];
     const imagePath = images[currentIndex];
@@ -208,8 +210,14 @@ function showCurrentImage() {
     sessionName.textContent = getSessionName();
     progress.textContent = `${currentIndex + 1} / ${images.length}`;
 
-    iceImage.src = imagePath;
-    iceImage.alt = `${getSessionName()}の画像${currentIndex + 1}`;
+iceImage.alt = `${getSessionName()}の画像${currentIndex + 1}`;
+
+iceImage.onload = () => {
+    imageCard.classList.remove("loading");
+        startTimer();
+};
+
+iceImage.src = imagePath;
 
     updateGuideBeforeAnswer();
     updateTimerDisplay();
@@ -217,7 +225,6 @@ function showCurrentImage() {
     likeButton.disabled = false;
     dislikeButton.disabled = false;
 
-    startTimer();
 }
 
 
