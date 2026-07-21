@@ -302,16 +302,11 @@ button:hover{
         transform 0.35s ease;
 }
 
-#iceImage{
-
-    width:100%;
-
-    aspect-ratio:1/1;
-
-    object-fit:contain;
-
-    display:block;
-
+#iceImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 
@@ -517,4 +512,141 @@ button:hover{
     transition:
         opacity 0.15s ease,
         transform 0.35s ease;
+}
+
+/* ===================================
+   実験中は1画面に固定
+=================================== */
+
+body.experiment-mode {
+    overflow: hidden;
+    height: 100dvh;
+    overscroll-behavior: none;
+}
+
+body.experiment-mode .app {
+    height: 100dvh;
+    min-height: 0;
+    padding: 10px 14px;
+    overflow: hidden;
+}
+
+body.experiment-mode #experimentScreen.active {
+    display: grid;
+
+    grid-template-rows:
+        auto
+        auto
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    gap: 8px;
+
+    height: calc(100dvh - 20px);
+
+    touch-action: none;
+    overflow: hidden;
+}
+
+
+/* 上部のセッション名と進行状況 */
+
+body.experiment-mode .top {
+    margin: 0;
+}
+
+body.experiment-mode #sessionName {
+    font-size: 18px;
+}
+
+body.experiment-mode #progress {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+
+/* タイマーを小さくする */
+
+body.experiment-mode #timerCircle {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto;
+
+    font-size: 24px;
+}
+
+
+/* 画像カードを残り領域に収める */
+
+body.experiment-mode .imageCard {
+    min-height: 0;
+    height: 100%;
+
+    margin: 0;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+body.experiment-mode #iceImage {
+    width: 100%;
+    height: 100%;
+
+    max-height: 100%;
+
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+
+/* 好き・嫌いボタン */
+
+body.experiment-mode .buttons {
+    margin: 0;
+    gap: 10px;
+}
+
+body.experiment-mode .buttons button {
+    height: 50px;
+    font-size: 16px;
+}
+
+
+/* 操作案内 */
+
+body.experiment-mode #guide {
+    margin: 0;
+
+    min-height: 24px;
+
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+
+/* 高さが小さいスマホ向け */
+
+@media (max-height: 700px) {
+
+    body.experiment-mode #timerCircle {
+        width: 52px;
+        height: 52px;
+
+        font-size: 20px;
+    }
+
+    body.experiment-mode .buttons button {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    body.experiment-mode #guide {
+        font-size: 14px;
+    }
 }
