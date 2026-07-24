@@ -518,217 +518,92 @@ button:hover{
    実験中は1画面に固定
 =================================== */
 
-body.experiment-mode {
-    overflow: hidden;
-    height: 100dvh;
-    overscroll-behavior: none;
-}
-
-body.experiment-mode .app {
-    height: 100dvh;
-    min-height: 0;
-    padding: 10px 14px;
-    overflow: hidden;
-}
-
-body.experiment-mode #experimentScreen.active {
-    display: grid;
-
-    grid-template-rows:
-        auto
-        auto
-        minmax(0, 1fr)
-        auto
-        auto;
-
-    gap: 8px;
-
-    height: calc(100dvh - 20px);
-
-    touch-action: none;
-    overflow: hidden;
-}
-
-
-/* 上部のセッション名と進行状況 */
-
-body.experiment-mode .top {
-    margin: 0;
-}
-
-body.experiment-mode #sessionName {
-    font-size: 18px;
-}
-
-body.experiment-mode #progress {
-    padding: 6px 12px;
-    font-size: 14px;
-}
-
-
-/* タイマーを小さくする */
-
-body.experiment-mode #timerCircle {
-    width: 62px;
-    height: 62px;
-
-    margin: 0 auto;
-
-    font-size: 24px;
-}
-
-
-/* 画像カードを残り領域に収める */
-
-body.experiment-mode .imageCard {
-    min-height: 0;
-    height: 100%;
-
-    margin: 0;
-    padding: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-body.experiment-mode #iceImage {
-    width: 100%;
-    height: 100%;
-
-    max-height: 100%;
-
-    aspect-ratio: auto;
-    object-fit: contain;
-}
-
-
-/* 好き・嫌いボタン */
-
-body.experiment-mode .buttons {
-    margin: 0;
-    gap: 10px;
-}
-
-body.experiment-mode .buttons button {
-    height: 50px;
-    font-size: 16px;
-}
-
-
-/* 操作案内 */
-
-body.experiment-mode #guide {
-    margin: 0;
-
-    min-height: 24px;
-
-    font-size: 15px;
-    line-height: 1.4;
-}
-
-
-/* 高さが小さいスマホ向け */
-
-@media (max-height: 700px) {
-
-    body.experiment-mode #timerCircle {
-        width: 52px;
-        height: 52px;
-
-        font-size: 20px;
-    }
-
-    body.experiment-mode .buttons button {
-        height: 44px;
-        font-size: 15px;
-    }
-
-    body.experiment-mode #guide {
-        font-size: 14px;
-    }
-}
-
 /* ===================================
-   実験画面を完全に1画面へ固定
+   実験画面をスマホの表示領域に完全固定
 =================================== */
-
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
 
 html.experiment-mode,
 body.experiment-mode {
+    width: 100%;
     height: 100%;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden !important;
     overscroll-behavior: none;
+
+    position: fixed;
+    inset: 0;
 }
 
 body.experiment-mode {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    margin: 0;
+    touch-action: manipulation;
 }
 
 body.experiment-mode .app {
+    position: fixed;
+    inset: 0;
+
     width: 100%;
     max-width: 430px;
 
-    height: 100dvh;
+    height: 100svh;
     min-height: 0;
 
     margin: 0 auto;
-    padding: 8px 12px;
+    padding:
+        max(6px, env(safe-area-inset-top))
+        10px
+        max(6px, env(safe-area-inset-bottom));
 
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 body.experiment-mode #experimentScreen.active {
+    position: absolute;
+    inset:
+        max(6px, env(safe-area-inset-top))
+        10px
+        max(6px, env(safe-area-inset-bottom));
+
     display: grid;
 
     grid-template-rows:
-        38px
-        54px
-        minmax(0, 1fr)
+        34px
         48px
-        28px;
+        minmax(0, 1fr)
+        46px
+        26px;
 
-    gap: 6px;
+    gap: 5px;
 
-    width: 100%;
-    height: calc(100dvh - 16px);
+    width: auto;
+    height: auto;
 
     margin: 0;
     padding: 0;
 
-    overflow: hidden;
+    overflow: hidden !important;
+    overscroll-behavior: none;
     touch-action: none;
 }
 
 
-/* セッション名・何枚目かを常に上に表示 */
+/* セッション名・進行状況 */
 
 body.experiment-mode .top {
-    position: relative;
-    z-index: 10;
-
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    width: 100%;
-    height: 38px;
+    height: 34px;
+    min-height: 0;
 
     margin: 0;
 }
 
 body.experiment-mode #sessionName {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1;
 }
 
@@ -742,25 +617,26 @@ body.experiment-mode #progress {
 /* タイマー */
 
 body.experiment-mode #timerCircle {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
 
     margin: 0 auto;
 
-    font-size: 21px;
+    font-size: 19px;
     line-height: 1;
 }
 
 
-/* 画像領域 */
+/* 画像 */
 
 body.experiment-mode .imageCard {
     width: 100%;
     height: 100%;
+    min-width: 0;
     min-height: 0;
 
     margin: 0;
-    padding: 6px;
+    padding: 5px;
 
     display: flex;
     align-items: center;
@@ -774,7 +650,6 @@ body.experiment-mode #iceImage {
 
     width: 100%;
     height: 100%;
-
     max-width: 100%;
     max-height: 100%;
 
@@ -790,76 +665,88 @@ body.experiment-mode .buttons {
     gap: 8px;
 
     width: 100%;
-    height: 48px;
+    height: 46px;
 
     margin: 0;
 }
 
 body.experiment-mode .buttons button {
-    height: 48px;
+    height: 46px;
     min-height: 0;
 
-    padding: 0 6px;
+    padding: 0 5px;
 
     font-size: 15px;
 }
 
 
-/* 案内文 */
+/* 操作案内 */
 
 body.experiment-mode #guide {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: 28px;
+    height: 26px;
     min-height: 0;
 
     margin: 0;
 
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 
-/* 画面がかなり小さいスマホ向け */
+/* 画面が小さい端末 */
 
 @media (max-height: 650px) {
-
-    body.experiment-mode .app {
-        padding: 5px 10px;
-    }
-
     body.experiment-mode #experimentScreen.active {
         grid-template-rows:
-            32px
-            44px
+            28px
+            40px
             minmax(0, 1fr)
-            42px
-            24px;
+            40px
+            22px;
 
-        gap: 4px;
-
-        height: calc(100dvh - 10px);
+        gap: 3px;
     }
 
     body.experiment-mode .top {
-        height: 32px;
+        height: 28px;
     }
 
     body.experiment-mode #timerCircle {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
 
     body.experiment-mode .buttons,
     body.experiment-mode .buttons button {
-        height: 42px;
+        height: 40px;
     }
 
     body.experiment-mode #guide {
-        height: 24px;
-        font-size: 12px;
+        height: 22px;
+        font-size: 11px;
     }
+}
+
+body.experiment-mode .buttons {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+body.experiment-mode .buttons button {
+    position: relative;
+    z-index: 101;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+body.experiment-mode .imageCard {
+    touch-action: none;
 }
