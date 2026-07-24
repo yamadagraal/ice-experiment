@@ -425,9 +425,6 @@ function handleTimeUp() {
    タッチ操作
 =================================== */
 
-let touchStartX = 0;
-let touchStartY = 0;
-
 imageCard.addEventListener(
     "touchstart",
     (event) => {
