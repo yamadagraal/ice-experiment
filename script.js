@@ -230,7 +230,11 @@ iceImage.alt = `${getSessionName()}の画像${currentIndex + 1}`;
 
 iceImage.onload = () => {
     imageCard.classList.remove("loading");
-        startTimer();
+
+    likeButton.disabled = false;
+    dislikeButton.disabled = false;
+
+    startTimer();
 };
 
 iceImage.src = imagePath;
@@ -421,14 +425,15 @@ function handleTimeUp() {
    タッチ操作
 =================================== */
 
-experimentScreen.addEventListener(
+let touchStartX = 0;
+let touchStartY = 0;
+
+imageCard.addEventListener(
     "touchstart",
     (event) => {
         if (event.touches.length !== 1 || isMoving) {
             return;
         }
-
-        event.preventDefault();
 
         const touch = event.touches[0];
 
@@ -436,30 +441,26 @@ experimentScreen.addEventListener(
         touchStartY = touch.clientY;
     },
     {
-        passive: false
+        passive: true
     }
 );
 
-document.addEventListener(
+imageCard.addEventListener(
     "touchmove",
     (event) => {
-        if (document.body.classList.contains("experiment-mode")) {
-            event.preventDefault();
-        }
+        event.preventDefault();
     },
     {
         passive: false
     }
 );
 
-experimentScreen.addEventListener(
+imageCard.addEventListener(
     "touchend",
     (event) => {
         if (isMoving || event.changedTouches.length === 0) {
             return;
         }
-
-        event.preventDefault();
 
         const touch = event.changedTouches[0];
 
@@ -471,7 +472,7 @@ experimentScreen.addEventListener(
         );
     },
     {
-        passive: false
+        passive: true
     }
 );
 
