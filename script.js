@@ -138,6 +138,22 @@ function showScreen(screenName) {
     });
 
     screens[screenName].classList.add("active");
+
+    const experimentActive = screenName === "experiment";
+
+    document.documentElement.classList.toggle(
+        "experiment-mode",
+        experimentActive
+    );
+
+    document.body.classList.toggle(
+        "experiment-mode",
+        experimentActive
+    );
+
+    if (experimentActive) {
+        window.scrollTo(0, 0);
+    }
 }
 
 
@@ -412,38 +428,50 @@ experimentScreen.addEventListener(
             return;
         }
 
+        event.preventDefault();
+
         const touch = event.touches[0];
 
         touchStartX = touch.clientX;
         touchStartY = touch.clientY;
     },
     {
-        passive: true
+        passive: false
     }
 );
 
+document.addEventListener(
+    "touchmove",
+    (event) => {
+        if (document.body.classList.contains("experiment-mode")) {
+            event.preventDefault();
+        }
+    },
+    {
+        passive: false
+    }
+);
 
 experimentScreen.addEventListener(
     "touchend",
     (event) => {
-        if (isMoving) {
+        if (isMoving || event.changedTouches.length === 0) {
             return;
         }
 
-        const touch = event.changedTouches[0];
+        event.preventDefault();
 
-        const endX = touch.clientX;
-        const endY = touch.clientY;
+        const touch = event.changedTouches[0];
 
         handleSwipe(
             touchStartX,
             touchStartY,
-            endX,
-            endY
+            touch.clientX,
+            touch.clientY
         );
     },
     {
-        passive: true
+        passive: false
     }
 );
 
