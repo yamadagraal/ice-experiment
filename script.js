@@ -711,8 +711,8 @@ function showPracticeComplete() {
 function showBreakScreen() {
     messageTitle.textContent = "休憩";
     messageBody.innerHTML =
-        "準備ができたらSession 2を始めてください<br>" +
-        "評価後に上から下へスワイプしてください<br>";
+        "準備ができたら<br>" + "Session 2を始めてください<br>" +
+        "評価後に<br>" + "上から下へスワイプしてください<br>";
 
     nextButton.textContent = "Session 2を始める";
 
