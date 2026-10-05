@@ -706,9 +706,9 @@ function showPracticeComplete() {
     messageTitle.textContent = "練習終了";
 
     messageBody.innerHTML =
-        "これから本番を開始します。<br>" +
+        "これから本番を開始します<br>" +
         "Session 1では、評価後に<br>" +
-        "下から上へスワイプしてください。";
+        "下から上へスワイプしてください";
 
     nextButton.textContent = "Session 1を始める";
 
@@ -728,9 +728,9 @@ function showPractice2Complete() {
     messageTitle.textContent = "練習終了";
 
     messageBody.innerHTML =
-        "練習は終了です。<br>" +
-        "Session 2でも、評価後に<br>" +
-        "上から下へスワイプしてください。";
+        "これから本番を開始します<br>" +
+        "Session 2では、評価後に<br>" +
+        "上から下へスワイプしてください";
 
     nextButton.textContent = "Session 2を始める";
 
@@ -750,9 +750,8 @@ function showBreakScreen() {
     messageTitle.textContent = "休憩";
 
     messageBody.innerHTML =
-        "Session 2ではスワイプ方向が変わります。<br>" +
-        "まず3枚で練習してください。<br>" +
-        "評価後に上から下へスワイプしてください。";
+        "準備ができたらセッション２を初めてください<br>" +
+        "評価後に上から下へスワイプしてください";
 
     nextButton.textContent = "Session 2前の練習を始める";
 
