@@ -750,8 +750,10 @@ function showBreakScreen() {
     messageTitle.textContent = "休憩";
 
     messageBody.innerHTML =
-        "準備ができたらSession 2を始めてください<br>" +
-        "評価後は上から下へスワイプしてください";
+        "準備ができたら<br>" +
+        "Session 2を始めてください<br><br>" +
+        "評価後は上から下へ<br>" +
+        "スワイプしてください";
 
     nextButton.textContent = "練習を始める";
 
