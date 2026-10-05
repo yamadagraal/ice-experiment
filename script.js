@@ -753,7 +753,7 @@ function showBreakScreen() {
         "準備ができたらセッション２を初めてください<br>" +
         "評価後に上から下へスワイプしてください";
 
-    nextButton.textContent = "Session 2前の練習を始める";
+    nextButton.textContent = "練習を始める";
 
     nextAction = () => {
         startMode("practice2");

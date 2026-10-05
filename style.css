@@ -750,3 +750,10 @@ body.experiment-mode .buttons button {
 body.experiment-mode .imageCard {
     touch-action: none;
 }
+
+/* 日本語が単語の途中で不自然に改行されるのを防ぐ */
+.instructionList,
+#messageBody {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
