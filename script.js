@@ -750,8 +750,8 @@ function showBreakScreen() {
     messageTitle.textContent = "休憩";
 
     messageBody.innerHTML =
-        "準備ができたらセッション２を初めてください<br>" +
-        "評価後に上から下へスワイプしてください";
+        "準備ができたらSession 2を始めてください<br>" +
+        "評価後は上から下へスワイプしてください";
 
     nextButton.textContent = "練習を始める";
 
@@ -761,7 +761,6 @@ function showBreakScreen() {
 
     showScreen("message");
 }
-
 
 /* ===================================
    画像読み込みエラー
